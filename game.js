@@ -2,7 +2,7 @@ function getRandomInt(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
 
-    return Math.round(Math.random() * (maxFloored - minCeiled) + minCeiled)
+    return Math.round(Math.random() * (maxFloored - minCeiled) + minCeiled);
 }
 
 
@@ -15,7 +15,7 @@ function getComputerChoice(){
         case 2:
             return "paper";
         case 3:
-            return "scissors"
+            return "scissors";
     }
 }
 
@@ -26,8 +26,8 @@ function getHumanChoice(){
     1. Rock
     2. Paper
     3. Scissors
-    `
-    let choice = +(prompt(instructions))
+    `;
+    let choice = +(prompt(instructions));
 
     switch(choice){
         case 1:
@@ -35,7 +35,7 @@ function getHumanChoice(){
         case 2:
             return "paper";
         case 3:
-            return "scissors"
+            return "scissors";
     }
 }
 
@@ -100,7 +100,7 @@ function playGame(){
         else if (result === 0){computerScore++;}
     }
 
-    console.log("Game End")
+    console.log("Game End");
 
     if (humanScore === computerScore){console.log("The game was a Draw");}
     else if (humanScore > computerScore){console.log("You won the game!!");}
