@@ -20,6 +20,7 @@ function getComputerChoice(){
 }
 
 
+// DEPRECATED
 function getHumanChoice(){
     let instructions = `Please select a valid choice (1-3):
     
@@ -41,49 +42,22 @@ function getHumanChoice(){
 
 
 function playRound(humanChoice, computerChoice){
-    switch(humanChoice){
-        case "rock":
-            switch(computerChoice){
-                case "rock":
-                    console.log("Draw");
-                    return;
-                case "paper":
-                    console.log("You lose! Paper beats Rock");
-                    //computerScore++;
-                    return 0;
-                case "scissors":
-                    console.log("You win! Rock beats Scissors");
-                    //humanScore++;
-                    return 1;
-            }
-        case "paper":
-            switch(computerChoice){
-                case "rock":
-                    console.log("You win! Paper beats Rock");
-                    //humanScore++;
-                    return 1;
-                case "paper":
-                    console.log("Draw");
-                    return;
-                case "scissors":
-                    console.log("You lose! Scissors beats Paper");
-                    //computerScore++;
-                    return 0;
-            }
-        case "scissors":
-            switch(computerChoice){
-                case "rock":
-                    console.log("You lose! Rock beats Scissors");
-                    //computerScore++;
-                    return 0;
-                case "paper":
-                    console.log("You win! Scissors beats Paper");
-                    //humanScore++;
-                    return 1;
-                case "scissors":
-                    console.log("Draw");
-                    return;
-            }
+    const winningMatch = {
+        "rock": "scissors",
+        "paper": "rock",
+        "scissors": "paper",
+    }
+
+    if (humanChoice === computerChoice){
+        console.log("Draw");
+    }
+
+    else if (winningMatch[humanChoice] === computerChoice){
+        console.log("You win! Rock beats Scissors");
+    }
+
+    else {
+        console.log("You lose! Paper beats Rock");
     }
 }
 
@@ -109,4 +83,13 @@ function playGame(){
 
 
 // Run script
-playGame();
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const humanChoice = button.id;
+        playRound(humanChoice, getComputerChoice());
+    })
+});
